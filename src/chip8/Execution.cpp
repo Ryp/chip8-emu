@@ -25,7 +25,7 @@ namespace chip8
         std::memcpy(&state.memory[MinProgramAddress], program, size);
     }
 
-    u16 load_next_instruction(const EmuConfig& config, CPUState& state)
+    u16 load_next_instruction(CPUState& state)
     {
         const u8* instructionPtr = &(state.memory[state.pc]);
 
