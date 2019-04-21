@@ -33,7 +33,7 @@ namespace chip8
     {
         Assert(state.sp > 0); // Stack Underflow
 
-        const u16 nextPC = state.stack[state.sp];
+        const u16 nextPC = state.stack[state.sp] + 2;
         Assert(is_valid_memory_range(nextPC, 2, MemoryUsage::Execute));
 
         state.pc = nextPC;
@@ -136,8 +136,6 @@ namespace chip8
 
         const u8 registerValue = state.vRegisters[registerName];
         const u8 sum = registerValue + value;
-
-        Assert(sum >= registerValue); // Overflow
 
         state.vRegisters[registerName] = sum;
     }
@@ -344,10 +342,9 @@ namespace chip8
 
                 const u8 screenPixelValue = read_screen_pixel(state, screenX, screenY);
 
-                //const u8 result = screenPixelValue ^ spritePixelValue;
-                const u8 result = spritePixelValue; // FIXME
+                const u8 result = screenPixelValue ^ spritePixelValue;
 
-                if (spritePixelValue && !result)
+                if (result != spritePixelValue)
                     collision = true;
 
                 write_screen_pixel(state, screenX, screenY, result);

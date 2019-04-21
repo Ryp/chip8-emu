@@ -20,7 +20,8 @@ namespace chip8
 
     KeyID wait_for_key_press()
     {
-        Assert(false); // TODO
+        Assert(false); // FIXME
+        return 0xA; // FIXME
     }
 
     void set_key_pressed(CPUState& state, KeyID key, bool pressedState)

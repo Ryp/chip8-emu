@@ -37,10 +37,10 @@ namespace chip8
         switch (usage)
         {
             case MemoryUsage::Read:
-                return ((baseAddress >= 0 && endAddress <= MaxProgramAddress));
+                return endAddress <= MaxProgramAddress;
             case MemoryUsage::Write:
             case MemoryUsage::Execute:
-                return ((baseAddress >= MinProgramAddress && endAddress <= MaxProgramAddress));
+                return baseAddress >= MinProgramAddress && endAddress <= MaxProgramAddress;
             default:
                 Assert(false);
                 return false;

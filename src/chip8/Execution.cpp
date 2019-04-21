@@ -37,6 +37,13 @@ namespace chip8
         if (config.debugMode)
             std::cout << "[DEBUG] executing instruction: " << std::hex << instruction << std::endl;
 
+        // Decrement timers
+        if (state.delayTimer > 0)
+            state.delayTimer--;
+
+        if (state.soundTimer > 0)
+            state.soundTimer--;
+
         // Save PC for later
         const u16 pcSave = state.pc;
 

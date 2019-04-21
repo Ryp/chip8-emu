@@ -51,12 +51,12 @@ TEST_CASE("Instructions")
         chip8::execute_instruction(config, state, 0x00EE);
 
         CHECK_EQ(state.sp, 1);
-        CHECK_EQ(state.pc, 0x0F00);
+        CHECK_EQ(state.pc, 0x0F02);
 
         chip8::execute_instruction(config, state, 0x00EE);
 
         CHECK_EQ(state.sp, 0);
-        CHECK_EQ(state.pc, chip8::MinProgramAddress);
+        CHECK_EQ(state.pc, chip8::MinProgramAddress + 2);
     }
 
     SUBCASE("SE")
