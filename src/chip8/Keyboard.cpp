@@ -29,7 +29,6 @@ namespace chip8
         Assert(key < KeyIDCount); // Invalid key
 
         const u16 keyMask = (1 << key);
-        state.keyState = (state.keyState & keyMask) | (pressedState ? keyMask : 0);
-        return ;
+        state.keyState = (state.keyState & ~keyMask) | (pressedState ? keyMask : 0);
     }
 }
