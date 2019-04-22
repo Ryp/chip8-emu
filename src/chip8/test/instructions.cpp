@@ -426,9 +426,7 @@ TEST_CASE("Instructions")
         state.vRegisters[chip8::V1] = 0x23;
         state.vRegisters[chip8::V2] = 0x00;
 
-        state.vRegisters[chip8::VA] = 0x1;
-
-        chip8::execute_instruction(config, state, 0xFA55);
+        chip8::execute_instruction(config, state, 0xF155);
 
         CHECK_EQ(state.memory[state.i + 0], 0xE4);
         CHECK_EQ(state.memory[state.i + 1], 0x23);
@@ -448,9 +446,7 @@ TEST_CASE("Instructions")
         state.memory[state.i + 1] = 0x23;
         state.memory[state.i + 2] = 0x00;
 
-        state.vRegisters[chip8::VA] = 0x1;
-
-        chip8::execute_instruction(config, state, 0xFA65);
+        chip8::execute_instruction(config, state, 0xF165);
 
         CHECK_EQ(state.vRegisters[chip8::V0], 0xE4);
         CHECK_EQ(state.vRegisters[chip8::V1], 0x23);

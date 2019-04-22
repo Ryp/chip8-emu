@@ -471,9 +471,7 @@ namespace chip8
     // starting at the address in I.
     void execute_ldai(CPUState& state, u8 registerName)
     {
-        Assert((registerName & ~0x0F) == 0); // Invalid register
-
-        const u8 registerIndexMax = state.vRegisters[registerName];
+        const u8 registerIndexMax = registerName;
 
         Assert((registerIndexMax & ~0x0F) == 0); // Invalid register
         Assert(is_valid_memory_range(state.i, registerIndexMax + 1, MemoryUsage::Write));
@@ -486,9 +484,7 @@ namespace chip8
     // The interpreter reads values from memory starting at location I into registers V0 through Vx.
     void execute_ldm(CPUState& state, u8 registerName)
     {
-        Assert((registerName & ~0x0F) == 0); // Invalid register
-
-        const u8 registerIndexMax = state.vRegisters[registerName];
+        const u8 registerIndexMax = registerName;
 
         Assert((registerIndexMax & ~0x0F) == 0); // Invalid register
         Assert(is_valid_memory_range(state.i, registerIndexMax + 1, MemoryUsage::Read));
