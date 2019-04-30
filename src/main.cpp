@@ -29,7 +29,7 @@ int main(int ac, char** av)
     chip8::EmuConfig config = {};
     config.debugMode = true;
     config.palette.primary = { 1.f, 1.f, 1.f };
-    config.palette.secondary = { 0.f, 0.f, 0.f };
+    config.palette.secondary = { 0.14f, 0.14f, 0.14f };
     config.screenScale = 8;
 
     chip8::CPUState state = chip8::createCPUState();
@@ -57,6 +57,8 @@ int main(int ac, char** av)
     }
 
     sdl2::execute_main_loop(state, config);
+
+    chip8::destroyCPUState(state);
 
     return 0;
 }
