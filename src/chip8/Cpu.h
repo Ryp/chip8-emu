@@ -58,7 +58,4 @@ namespace chip8
 
     CHIP8EMU_EMU_API CPUState createCPUState();
     CHIP8EMU_EMU_API void destroyCPUState(CPUState& state);
-
-    // Debug
-    CHIP8EMU_EMU_API void dump_cpu_state(const CPUState& state);
 }

@@ -73,13 +73,4 @@ namespace chip8
          delete[] state.memory;
          state.memory = nullptr;
     }
-
-    void dump_cpu_state(const CPUState& state)
-    {
-        // TODO
-        std::cout << "I: " << std::hex << state.i << std::endl;
-
-        for (u32 index = 0; index < VRegisterCount; index++)
-            std::cout << "V" << index << ": " << std::hex << static_cast<u32>(state.vRegisters[index]) << std::endl;
-    }
 }
