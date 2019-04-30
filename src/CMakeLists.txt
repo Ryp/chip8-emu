@@ -7,6 +7,7 @@
 
 add_subdirectory(core)
 add_subdirectory(chip8)
+add_subdirectory(sdl2)
 
 # Main executable
 set(CHIP8EMU_BIN chip8emu)
@@ -20,6 +21,7 @@ target_sources(${CHIP8EMU_BIN} PRIVATE
 target_link_libraries(${CHIP8EMU_BIN} PRIVATE
     ${CHIP8EMU_CORE_BIN}
     ${CHIP8EMU_EMU_BIN}
+    ${CHIP8EMU_SDL2_BIN}
 )
 
 reaper_configure_executable(${CHIP8EMU_BIN} "Chip8Emu")

@@ -10,8 +10,9 @@
 
 #include "chip8/Config.h"
 #include "chip8/Cpu.h"
-#include "chip8/Display.h"
 #include "chip8/Execution.h"
+
+#include "sdl2/SDL2Backend.h"
 
 #include <iostream>
 #include <fstream>
@@ -55,7 +56,7 @@ int main(int ac, char** av)
         chip8::load_program(state, reinterpret_cast<const u8*>(programContent.data()), programSizeInBytes);
     }
 
-    chip8::test(state, config);
+    sdl2::execute_main_loop(state, config);
 
     return 0;
 }

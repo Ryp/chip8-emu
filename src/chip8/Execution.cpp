@@ -14,6 +14,7 @@
 
 #include <cstring>
 #include <iostream>
+#include <algorithm>
 
 namespace chip8
 {
@@ -32,18 +33,43 @@ namespace chip8
         return load_u16_big_endian(instructionPtr);
     }
 
-    void execute_instruction(const EmuConfig& config, CPUState& state, u16 instruction)
+    void execute_step(const EmuConfig& config, CPUState& state, unsigned int deltaTimeMs)
     {
-        if (config.debugMode)
-            std::cout << "[DEBUG] executing instruction: " << std::hex << instruction << std::endl;
+        uint instructionsToExecute = 0;
+        update_timers(state, instructionsToExecute, deltaTimeMs);
 
-        // Decrement timers
-        if (state.delayTimer > 0)
-            state.delayTimer--;
+        for (uint i = 0; i < instructionsToExecute; i++)
+        {
+            // Simulate logic
+            u16 nextInstruction = load_next_instruction(state);
+            execute_instruction(config, state, nextInstruction);
+        }
+    }
 
+    void update_timers(CPUState& state, unsigned int& executionCounter, unsigned int deltaTimeMs)
+    {
+        // Update delay timer
+        state.delayTimerAccumulator += deltaTimeMs;
+
+        const uint delayTimerDecrement = state.delayTimerAccumulator / DelayTimerPeriodMs;
+        state.delayTimer = std::max(0, static_cast<int>(state.delayTimer) - static_cast<int>(delayTimerDecrement));
+
+        // Remove accumulated ticks
+        state.delayTimerAccumulator = state.delayTimerAccumulator % DelayTimerPeriodMs;
+
+        // Update execution counter
+        state.executionTimerAccumulator += deltaTimeMs;
+
+        executionCounter = state.executionTimerAccumulator / InstructionExecutionPeriodMs;
+        state.executionTimerAccumulator = state.executionTimerAccumulator % InstructionExecutionPeriodMs;
+
+        // TODO Handle sound
         if (state.soundTimer > 0)
             state.soundTimer--;
+    }
 
+    void execute_instruction(const EmuConfig& config, CPUState& state, u16 instruction)
+    {
         // Save PC for later
         const u16 pcSave = state.pc;
 

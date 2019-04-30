@@ -17,9 +17,6 @@ namespace chip8
     struct EmuConfig;
     struct Palette;
 
-    u8 read_screen_pixel(const CPUState& state, u32 x, u32 y);
+    CHIP8EMU_EMU_API u8 read_screen_pixel(const CPUState& state, u32 x, u32 y);
     void write_screen_pixel(CPUState& state, u32 x, u32 y, u8 value);
-
-    CHIP8EMU_EMU_API void fill_image_buffer(u8* imageOutput, const CPUState& state, const Palette& palette);
-    CHIP8EMU_EMU_API void test(CPUState& state, const EmuConfig& config);
 }

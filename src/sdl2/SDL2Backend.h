@@ -7,25 +7,15 @@
 
 #pragma once
 
+#include "SDL2Export.h"
+
 namespace chip8
 {
-    struct Color
-    {
-        float r;
-        float g;
-        float b;
-    };
+    struct CPUState;
+    struct EmuConfig;
+}
 
-    struct Palette
-    {
-        Color primary;
-        Color secondary;
-    };
-
-    struct EmuConfig
-    {
-        bool debugMode;
-        Palette palette;
-        unsigned int screenScale;
-    };
+namespace sdl2
+{
+    CHIP8EMU_SDL2_API int execute_main_loop(chip8::CPUState& state, const chip8::EmuConfig& config);
 }

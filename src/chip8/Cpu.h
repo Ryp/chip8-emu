@@ -30,6 +30,12 @@ namespace chip8
     static const u16 MinProgramAddress = 0x0200;
     static const u16 MaxProgramAddress = 0x0FFF;
 
+    // Timings
+    static const unsigned int DelayTimerFrequency = 60;
+    static const unsigned int InstructionExecutionFrequency = 500;
+    static const unsigned int DelayTimerPeriodMs = 1000 / DelayTimerFrequency;
+    static const unsigned int InstructionExecutionPeriodMs = 1000 / InstructionExecutionFrequency;
+
     enum VRegisterName
     {
         V0, V1, V2, V3,
@@ -48,6 +54,10 @@ namespace chip8
 
         u8 delayTimer;
         u8 soundTimer;
+
+        // Implementation detail
+        u32 delayTimerAccumulator;
+        u32 executionTimerAccumulator;
 
         u8* memory;
 
