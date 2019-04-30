@@ -43,7 +43,7 @@ namespace chip8
     // Jump to a machine code routine at nnn.
     // This instruction is only used on the old computers on which Chip-8 was originally implemented.
     // NOTE: We choose to ignore it since we don't load any code into system memory.
-    void execute_sys(CPUState& state, u16 address)
+    void execute_sys(CPUState& /*state*/, u16 /*address*/)
     {
         // noop
     }
