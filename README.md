@@ -1,0 +1,22 @@
+# Chip-8 Emulator
+
+I coded this simple emulator for fun and as an exercise. It can run vanilla Chip-8 ROMs without any kind of fancy extensions.
+I used the publicly available `pong.rom` for testing as well as a bunch of custom unit tests.
+
+## Building
+
+This should get you going after cloning the repo:
+```sh
+$ cmake -H. -B./build
+$ cmake --build build
+$ ./build/chip8emu <your_rom_here>
+```
+
+**Disclaimer:** I didn't spend too much effort making this portable/packaged at all.
+This was developped under Linux, but the dependencies (SDL2) are available in Windows so if you really want to run that there that won't be too much effort.
+
+If you want to change the SDL2 backend, my source is modular enough to make that happen easily. Contact me if you have questions!
+
+## Acknowledgments
+
+This was implemented mostly with the help of [Cowgod's technical specs](http://devernay.free.fr/hacks/chip8/C8TECH10.HTM). Thanks for your very complete specs!
