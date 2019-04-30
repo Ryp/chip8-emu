@@ -17,6 +17,23 @@ This was developped under Linux, but the dependencies (SDL2) are available in Wi
 
 If you want to change the SDL2 backend, my source is modular enough to make that happen easily. Contact me if you have questions!
 
+## Input
+
+For simplicity, this program assumes that you are using a QWERTY layout, and maps the original 4x4 keys on this area of the keyboard:
+```
+Original    ->  QWERTY layout
+1  2  3  C      1  2  3  4
+4  5  6  D      Q  W  E  R
+7  8  9  E      A  S  D  F
+A  0  B  F      Z  X  C  V
+```
+
+## Output
+
+For the video output, I'm scaling the original 64x32 framebuffer by 8 for more comfortable viewing by default. This can only be changed by recompiling `main.cpp` for now.
+
+**Note:** Sound is NOT supported at the moment.
+
 ## Acknowledgments
 
 This was implemented mostly with the help of [Cowgod's technical specs](http://devernay.free.fr/hacks/chip8/C8TECH10.HTM). Thanks for your very complete specs!
