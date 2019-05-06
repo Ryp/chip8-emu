@@ -1,7 +1,10 @@
 # Chip-8 Emulator
 
 I coded this simple emulator for fun and as an exercise. It can run vanilla Chip-8 ROMs without any kind of fancy extensions.
-I used the publicly available `pong.rom` for testing as well as a bunch of custom unit tests.
+I used the publicly available ROMs for testing as well as a bunch of custom unit tests.
+
+![Example](image/tictactoe.png?raw=true)
+![Example](image/invaders.png?raw=true)
 
 ## Building
 
