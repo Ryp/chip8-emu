@@ -338,8 +338,12 @@ namespace chip8
             Assert(false); // Unknown instruction
         }
 
-        // Increment PC only if it was NOT overriden by an instruction
-        if (pcSave == state.pc)
+        // Increment PC only if it was NOT overriden by an instruction,
+        // or if we are waiting for user input.
+        if (pcSave == state.pc && !state.isWaitingForKey)
             state.pc += 2;
+
+        // Save previous key state
+        state.keyStatePrev = state.keyState;
     }
 }

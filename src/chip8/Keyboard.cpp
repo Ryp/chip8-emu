@@ -18,10 +18,19 @@ namespace chip8
         return state.keyState & (1 << key);
     }
 
-    KeyID wait_for_key_press()
+    // If multiple keys are pressed at the same time, only register one.
+    KeyID get_key_pressed(u16 keyState)
     {
-        Assert(false); // FIXME
-        return 0xA; // FIXME
+        Assert(keyState != 0);
+
+        for (int i = 1; i < 16; i++)
+        {
+            if ((1 << i) & keyState)
+                return i;
+        }
+
+        Assert(false);
+        return 0x0;
     }
 
     void set_key_pressed(CPUState& state, KeyID key, bool pressedState)

@@ -23,7 +23,8 @@ namespace chip8
     static const u8 KeyIDCount = 16;
 
     bool is_key_pressed(const CPUState& state, KeyID key);
-    KeyID wait_for_key_press();
+
+    KeyID get_key_pressed(u16 keyState);
 
     CHIP8EMU_EMU_API void set_key_pressed(CPUState& state, KeyID key, bool pressedState);
 }

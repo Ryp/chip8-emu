@@ -26,7 +26,7 @@ namespace chip8
     static const unsigned int ScreenHeight = 32;
     static const unsigned int ScreenLineSizeInBytes = ScreenWidth / 8;
 
-    // RAM
+    // Memory
     static const u16 MinProgramAddress = 0x0200;
     static const u16 MaxProgramAddress = 0x0FFF;
 
@@ -62,6 +62,10 @@ namespace chip8
         u8* memory;
 
         u16 keyState;
+
+        u16 keyStatePrev;
+        bool isWaitingForKey;
+
         u16 fontTableOffsets[FontTableGlyphCount];
         u8 screen[ScreenHeight][ScreenLineSizeInBytes];
     };

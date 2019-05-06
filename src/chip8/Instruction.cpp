@@ -397,9 +397,19 @@ namespace chip8
     {
         Assert((registerName & ~0x0F) == 0); // Invalid register
 
-        const KeyID key = wait_for_key_press();
-
-        state.vRegisters[registerName] = key;
+        // If we enter for the first time, set the waiting flag.
+        if (!state.isWaitingForKey)
+            state.isWaitingForKey = true;
+        else
+        {
+            const u16 keyStatePressMask = ~state.keyStatePrev & state.keyState;
+            // When waiting, check the key states.
+            if (keyStatePressMask)
+            {
+                state.vRegisters[registerName] = get_key_pressed(keyStatePressMask);
+                state.isWaitingForKey = false;
+            }
+        }
     }
 
     // Set delay timer = Vx.
