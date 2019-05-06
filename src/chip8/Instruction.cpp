@@ -344,7 +344,8 @@ namespace chip8
 
                 const u8 result = screenPixelValue ^ spritePixelValue;
 
-                if (result != spritePixelValue)
+                // A pixel was erased
+                if (screenPixelValue && !result)
                     collision = true;
 
                 write_screen_pixel(state, screenX, screenY, result);
