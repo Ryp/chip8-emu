@@ -8,6 +8,7 @@
 #include <doctest/doctest.h>
 
 #include "chip8/Execution.h"
+#include "chip8/Keyboard.h"
 
 TEST_CASE("Instructions")
 {
@@ -348,7 +349,20 @@ TEST_CASE("Instructions")
 
     SUBCASE("LDK")
     {
-        // TODO
+        CHECK(!state.isWaitingForKey);
+        CHECK_EQ(state.vRegisters[chip8::V1], 0);
+
+        chip8::execute_instruction(config, state, 0xF10A);
+
+        CHECK(state.isWaitingForKey);
+        CHECK_EQ(state.vRegisters[chip8::V1], 0);
+
+        chip8::set_key_pressed(state, 0xA, true);
+
+        chip8::execute_instruction(config, state, 0xF10A);
+
+        CHECK(!state.isWaitingForKey);
+        CHECK_EQ(state.vRegisters[chip8::V1], 0xA);
     }
 
     SUBCASE("LDDT")
