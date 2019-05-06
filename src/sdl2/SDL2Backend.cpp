@@ -81,7 +81,7 @@ namespace sdl2
 
         Assert(SDL_Init(SDL_INIT_EVERYTHING) == 0, SDL_GetError());
 
-        SDL_Window* win = SDL_CreateWindow("Hello World!", 100, 100, width, height, SDL_WINDOW_SHOWN);
+        SDL_Window* win = SDL_CreateWindow("CHIP-8 Emulator", 100, 100, width, height, SDL_WINDOW_SHOWN);
         Assert(win != nullptr, SDL_GetError());
 
         SDL_Renderer* ren = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED);
