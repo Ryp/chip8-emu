@@ -28,6 +28,8 @@ Original    ->  QWERTY layout
 A  0  B  F      Z  X  C  V
 ```
 
+You can exit the emulator by pressing `ESC`.
+
 ## Output
 
 For the video output, I'm scaling the original 64x32 framebuffer by 8 for more comfortable viewing by default. This can only be changed by recompiling `main.cpp` for now.
