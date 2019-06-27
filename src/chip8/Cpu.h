@@ -15,7 +15,7 @@ namespace chip8
 {
     static const unsigned int VRegisterCount = 16;
     static const unsigned int StackSize = 16;
-    static const unsigned int MemorySizeInBytes = 0x0FFF;
+    static const unsigned int MemorySizeInBytes = 0x1000;
 
     // Fonts
     static const unsigned int FontTableGlyphCount = 16;
